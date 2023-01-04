@@ -10,27 +10,20 @@ import UIKit
 
 extension UIImageView {
     
-    convenience init(UIImage: UIImage?, tintColor: UIColor? = nil) {
-        if let tintColor = tintColor {
-            self.init(image: image?.withRenderingMode(.alwaysTemplate))
-            self.tintColor(tintColor)
-            return
-        }
-        self.init(image: image)
-    }
-    
-    @discardableResult func contentMode(_ mode: ContentMode) -> Self {
+    @discardableResult
+    func contentMode(_ mode: ContentMode) -> Self {
         self.contentMode = mode
         return self
     }
     
-    @discardableResult func image(_ image: UIImage?, tintColor: UIColor? = nil) -> Self {
+    @discardableResult
+    func image(_ image: ImageRepresentable?, tintColor: ColorRepresentable? = nil) -> Self {
         if let tintColor = tintColor {
-            self.image = image?.withRenderingMode(.alwaysTemplate)
-            self.tintColor(tintColor)
+            self.image = image?.image.withRenderingMode(.alwaysTemplate)
+            self.tintColor(tintColor.color)
             return self
         }
-        self.image = image
+        self.image = image?.image
         return self
     }
 }

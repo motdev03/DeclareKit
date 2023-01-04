@@ -6,50 +6,48 @@
 //  Copyright © 2022 User. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UILabel {
-    convenience init(text: String? = nil, font: UIFont, textColor: UIColor?) {
+    
+    convenience init(text: String? = nil, font: FontRepresentable, textColor: ColorRepresentable?) {
         self.init()
         
         self.text = text
-        self.font = font
+        self.font = font.font
         self.textColor = textColor?.color
     }
     
-    convenience init(configKey: ConfigController, font: UIFont, textColor: UIColor?) {
-        self.init()
-        
-        self.text = configManager.text(for: configKey)
-        self.font = font
-        self.textColor = textColor?.color
-    }
-    
-    @discardableResult func style(_ font: UIFont, textColor: UIColor) -> Self {
-        self.font = font
+    @discardableResult
+    func style(_ font: FontRepresentable, textColor: ColorRepresentable) -> Self {
+        self.font = font.font
         self.textColor = textColor.color
         return self
     }
     
-    @discardableResult func text(_ text: String?, color: UIColor? = nil) -> Self {
+    @discardableResult
+    func text(_ text: String?, color: ColorRepresentable? = nil) -> Self {
         self.text = text
-        if let color = color {
+        if let color = color?.color {
             self.textColor = color.color
         }
         return self
     }
     
-    @discardableResult func textAlignment(_ alignment: NSTextAlignment) -> Self {
+    @discardableResult
+    func textAlignment(_ alignment: NSTextAlignment) -> Self {
         self.textAlignment = alignment
         return self
     }
     
-    @discardableResult func numberOfLines(_ number: Int) -> Self {
+    @discardableResult
+    func numberOfLines(_ number: Int) -> Self {
         self.numberOfLines = number
         return self
     }
     
-    @discardableResult func sizeToFit() -> Self {
+    @discardableResult
+    func sizeToFit() -> Self {
         super.sizeToFit()
         return self
     }

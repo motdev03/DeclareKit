@@ -1,3 +1,3 @@
 # DeclareUI
 
-A description of this package.
+https://medium.com/better-programming/method-chaining-in-swift-using-self-returning-functions-7489ca34a336

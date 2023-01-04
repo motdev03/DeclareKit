@@ -9,10 +9,11 @@
 import UIKit
 
 extension UIButton {
+    
     @discardableResult
-    func titleStyle(font: UIFont, textColor: UIColor, state: UIControl.State = .normal) -> Self {
-        self.titleLabel?.font = font
-        self.setTitleColor(textColor, for: state)
+    func titleStyle(font: FontRepresentable, textColor: ColorRepresentable, state: UIControl.State = .normal) -> Self {
+        self.titleLabel?.font = font.font
+        self.setTitleColor(textColor.color, for: state)
         return self
     }
     
@@ -23,12 +24,12 @@ extension UIButton {
     }
     
     @discardableResult
-    func image(_ image: UIImage?, tintColor: UIColor? = nil, for state: UIControl.State) -> Self {
+    func image(_ image: ImageRepresentable?, tintColor: ColorRepresentable? = nil, for state: UIControl.State) -> Self {
         if let tintColor = tintColor {
-            self.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
-            self.tintColor = tintColor
+            self.setImage(image?.image.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.tintColor = tintColor.color
         } else {
-            self.setImage(image, for: state)
+            self.setImage(image?.image, for: state)
         }
         
         return self
